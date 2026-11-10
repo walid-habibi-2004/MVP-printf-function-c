@@ -1,44 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahabibi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/07 13:53:03 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/07 14:18:47 by wahabibi         ###   ########.fr       */
+/*   Created: 2026/11/07 16:41:03 by wahabibi          #+#    #+#             */
+/*   Updated: 2026/11/07 16:55:58 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
+#include "libftprintf.h"
+#include <unistd.h>
 
-int	ft_max(int c, ...)
+void	ft_putchar(char c);
+
+void	ft_putnbr(int nb)
 {
-	va_list	arg;
-	int	i;
-	int	max;
-	int	max_x;
+	char	c;
 
-	if (c == 0)
-		return (0);
-	va_start(arg, c);
-	i = 0;
-	max = va_arg(arg, int);
-	max_x = 0;
-	while (i < c - 1)
+	if (nb == -2147483648)
 	{
-		max_x = va_arg(arg, int);
-		if (max < max_x)
-			max  = max_x;
-		i++;
+		write(1, "-2147483648", 11);
+		return ;
 	}
-	va_end(arg);
-	return (max);
-}
-
-int	main(void)
-{
-	printf("max = %d\n", ft_max(7, 9, 0, 12, 3, 55, 1007, 1000));
-	return (0);
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb > 9)
+		ft_putnbr(nb / 10);
+	c = (nb % 10) + '0';
+	ft_putchar(c);
 }

@@ -10,12 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
-void	ft_putstr(char *str);
+#include "libftprintf.h"
 
 void	ft_printf(const char *str, ...)
 {
@@ -28,12 +23,27 @@ void	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			if (str[i + 1] == 'd')
+			if (str[i + 1] == 'd' || str[i + 1] == 'i')
 				ft_putnbr(va_arg(args, int));
 			else if (str[i + 1] == 'c')
 				ft_putchar(va_arg(args, int));
 			else if (str[i + 1] == 's')
 				ft_putstr(va_arg(args, char *));
+			else if (str[i + 1] == 'u')
+				ft_putunsnbr(va_arg(args, unsigned int));
+			else if (str[i + 1] == 'p')
+				ft_putaddress(va_arg(args, void *));
+			else if (str[i + 1] == 'x')
+				ft_puthex(va_arg(args, unsigned int), 'x');
+			else if (str[i + 1] == 'X')
+				ft_puthex(va_arg(args, unsigned int), 'X');
+			else if (str[i + 1] == '%')
+				ft_putchar('%');
+			else
+			{
+				ft_putchar('%');
+				ft_putchar(str[i + 1]);
+			}
 			i++;
 		}
 		else
@@ -43,7 +53,4 @@ void	ft_printf(const char *str, ...)
 	va_end(args);
 }
 
-int	main(void)
-{
-	ft_printf("my name is: %s and my age is: %d and my gropage is: %c\n","walid", 42, 'B');
-}
+

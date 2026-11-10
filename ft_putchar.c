@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahabibi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/07 16:16:18 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/07 16:23:28 by wahabibi         ###   ########.fr       */
+/*   Created: 2026/11/07 16:53:43 by wahabibi          #+#    #+#             */
+/*   Updated: 2026/11/07 16:54:30 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libftprintf.h"
 
-
-int	main(void)
+void	ft_putchar(char c)
 {
-	printf("A: %d B: %s C: %c D: %d\n", 42, "hello", 'w', 100);
-	printf("%d %s %d", 42, "walid", 10);
-	return (0);
+	write(1, &c, 1);
 }
