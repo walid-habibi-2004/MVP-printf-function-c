@@ -1,11 +1,14 @@
 #include "libftprintf.h"
 
-void    ft_putunsnbr(unsigned int nb)
+int    ft_putunsnbr(unsigned int nb)
 {
     char    c;
+    int     len;
 
+    len = 0;
     if (nb > 9)
-        ft_putunsnbr(nb / 10);
+        len += ft_putunsnbr(nb / 10);
     c = (nb % 10) + '0';
-    ft_putchar(c);
+    len += ft_putchar(c);
+    return (len);
 }

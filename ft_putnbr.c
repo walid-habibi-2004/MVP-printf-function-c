@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahabibi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:41:03 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/07 16:55:58 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/10 18:43:19 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <unistd.h>
 
-void	ft_putchar(char c);
-
-void	ft_putnbr(int nb)
+int	ft_putnbr(int nb)
 {
+	int		len;
 	char	c;
 
+	len = 0;
 	if (nb == -2147483648)
 	{
 		write(1, "-2147483648", 11);
-		return ;
+		return (11);
 	}
 	if (nb < 0)
 	{
 		ft_putchar('-');
 		nb = -nb;
+		len++;
 	}
 	if (nb > 9)
-		ft_putnbr(nb / 10);
+		len += ft_putnbr(nb / 10);
 	c = (nb % 10) + '0';
-	ft_putchar(c);
+	len += ft_putchar(c);
+	return (len);
 }

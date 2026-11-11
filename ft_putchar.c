@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahabibi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:53:43 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/07 16:54:30 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/10 18:14:15 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }

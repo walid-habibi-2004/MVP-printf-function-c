@@ -1,13 +1,16 @@
 #include "libftprintf.h"
 #include <stdio.h>
 
-void    ft_putaddress(void *addr)
+int    ft_putaddress(void *addr)
 {
     size_t  n;
     size_t  tmp;
     char    *add;
     int     i;
+    int     len;
 
+    if (!addr)
+        return (ft_putstr("(nil)"));
     n = (size_t)addr;
     tmp = n;
     i = 0;
@@ -18,7 +21,7 @@ void    ft_putaddress(void *addr)
     }
     add = malloc((i + 1) * sizeof(char));
     if (!add)
-        return ;
+        return (-1);
     add[i] = '\0';
     while (i > 0)
     {
@@ -26,7 +29,9 @@ void    ft_putaddress(void *addr)
         tmp /= 16;
         i--;
     }
-    ft_putstr("0x");
-    ft_putstr(add);
+    len = 0;
+    len += ft_putstr("0x");
+    len += ft_putstr(add);
     free(add);
+    return (len);
 }

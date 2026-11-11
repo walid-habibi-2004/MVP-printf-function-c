@@ -1,31 +1,36 @@
 #include "libftprintf.h"
 
-static void    ft_print_hex(unsigned int nb, char x)
+static int    ft_print_hex(unsigned int nb, char x)
 {
-    // char    *he_x;
+    int     len;
 
     if (nb == 0)
-        return ;
+        return (0);
 
-    // he_x = "0123456789abcdef";
+    len = 0;
     if (nb > 0)
     {
-        ft_print_hex(nb / 16, x);
+        len += ft_print_hex(nb / 16, x);
         if (x == 'x')
             ft_putchar("0123456789abcdef"[nb % 16]);
         else if (x == 'X')
             ft_putchar("0123456789ABCDEF"[nb % 16]);
-        nb /= 16;
+        len++;
+        // nb /= 16;
     }
+    return (len);
 }
 
-void    ft_puthex(unsigned int nb, char x)
+int    ft_puthex(unsigned int nb, char x)
 {
+    int     len;
+
     if (nb == 0)
     {
         ft_putchar('0');
-        return ;
+        return (1);
     }
     else
-        ft_print_hex(nb, x);
+        len = ft_print_hex(nb, x);
+    return (len);
 }
