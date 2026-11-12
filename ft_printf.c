@@ -6,7 +6,7 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:46:49 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/12 14:04:45 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/12 15:41:39 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	int	ft_check_format(char format, va_list args)
 	else if (format == 's')
 		return (ft_putstr(va_arg(args, char *)));
 	else if (format == 'p')
-		return (ft_putaddress(va_arg(args, void *)));
+		return (ft_putadresse(va_arg(args, void *)));
 	else if (format == 'x')
 		return (ft_puthex(va_arg(args, unsigned int), 'x'));
 	else if (format == 'X')

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putaddress.c                                    :+:      :+:    :+:   */
+/*   ft_putadresse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahabibi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 18:25:03 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/12 09:58:29 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/12 15:44:15 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdio.h>
 
-int	ft_putaddress(void *addr)
+static	int	ft_check_addr(void)
 {
-	char		*add;
-	size_t	n;
-	size_t	tmp;
-	int	i;
 	int	len;
 	int	help;
 
 	len = 0;
-	if (!addr)
-	{
-		help = ft_putstr("(nil)");
-		if (help == -1)
-			return (-1);
-		len += help;
-		return (len);
-	}
+	help = ft_putstr("(nil)");
+	if (help == -1)
+		return (-1);
+	len += help;
+	return (len);
+}
+
+static	char	*ft_make_addr(void *addr)
+{
+	int		i;
+	char	*add;
+	size_t	n;
+	size_t	tmp;
+
 	n = (size_t)addr;
 	tmp = n;
 	i = 0;
@@ -41,7 +43,7 @@ int	ft_putaddress(void *addr)
 	}
 	add = malloc((i + 1) * sizeof(char));
 	if (!add)
-		return (-1);
+		return (NULL);
 	add[i] = '\0';
 	while (i > 0)
 	{
@@ -49,6 +51,15 @@ int	ft_putaddress(void *addr)
 		tmp /= 16;
 		i--;
 	}
+	return (add);
+}
+
+static	int	ft_print_adresse(char *add)
+{
+	int	len;
+	int	help;
+
+	len = 0;
 	help = ft_putstr("0x");
 	if (help == -1)
 	{
@@ -59,10 +70,21 @@ int	ft_putaddress(void *addr)
 	help = ft_putstr(add);
 	if (help == -1)
 	{
-	    free(add);
-	    return (-1);
+		free(add);
+		return (-1);
 	}
-	len += help;
 	free(add);
-	return (len);
+	return (len += help);
+}
+
+int	ft_putadresse(void *addr)
+{
+	char	*add;
+
+	if (!addr)
+		return (ft_check_addr());
+	add = ft_make_addr(addr);
+	if (!add)
+		return (-1);
+	return (ft_print_adresse(add));
 }
