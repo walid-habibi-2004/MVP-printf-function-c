@@ -6,7 +6,7 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:46:49 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/10 18:52:40 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/11 18:20:43 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	ft_printf(const char *str, ...)
 {
-	int		len;
 	va_list	args;
-	int	i;
+	int		len;
+	int		help;
+	int		i;
 
 	va_start(args, str);
 	i = 0;
@@ -25,38 +26,102 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
+			if (str[i + 1] == '\0')
+				break ;
 			if (str[i + 1] == 'd' || str[i + 1] == 'i')
-				len += ft_putnbr(va_arg(args, int));
-			else if (str[i + 1] == 'c')
-				len += ft_putchar(va_arg(args, int));
-			else if (str[i + 1] == 's')
-				len += ft_putstr(va_arg(args, char *));
-			else if (str[i + 1] == 'u')
-				len += ft_putunsnbr(va_arg(args, unsigned int));
-			else if (str[i + 1] == 'p')
-				len += ft_putaddress(va_arg(args, void *));
-			else if (str[i + 1] == 'x')
-				len += ft_puthex(va_arg(args, unsigned int), 'x');
-			else if (str[i + 1] == 'X')
-				len += ft_puthex(va_arg(args, unsigned int), 'X');
-			else if (str[i + 1] == '%')
-				ft_putchar('%');
-			else
 			{
-				ft_putchar('%');
-				ft_putchar(str[i + 1]);
+				help = ft_putnbr(va_arg(args, int));
+				if (help == -1)
+				{
+					va_end(args);
+					return (-1);
+				}
+				len += help;
+			}
+			else if (str[i + 1] == 'c')
+			{
+				help = ft_putchar(va_arg(args, int));
+				if (help == -1)
+				{
+					va_end(args);
+					return (-1);
+				}
+				len += help;
+			}
+			else if (str[i + 1] == 's')
+			{
+				help = ft_putstr(va_arg(args, char *));
+				if (help == -1)
+				{
+					va_end(args);
+					return (-1);
+				}
+				len += help;
+			}
+			else if (str[i + 1] == 'u')
+			{
+				help = ft_putunsnbr(va_arg(args, unsigned int));
+				if (help == -1)
+				{
+					va_end(args);
+					return (-1);
+				}
+				len += help;
+			}
+			else if (str[i + 1] == 'p')
+			{
+				help = ft_putaddress(va_arg(args, void *));
+				if (help == -1)
+				{
+					va_end(args);
+					return (-1);
+				}
+				len += help;
+			}
+			else if (str[i + 1] == 'x')
+			{
+				help = ft_puthex(va_arg(args, unsigned int), 'x');
+				if (help == -1)
+				{
+					va_end(args);
+					return (-1);
+				}
+				len += help;
+			}
+			else if (str[i + 1] == 'X')
+			{
+				help = ft_puthex(va_arg(args, unsigned int), 'X');
+				if (help == -1)
+				{
+					va_end(args);
+					return (-1);
+				}
+				len += help;
+			}
+			else if (str[i + 1] == '%')
+			{
+				help = ft_putchar('%');
+				if (help == -1)
+				{
+					va_end(args);
+					return (-1);
+				}
+				len += help;
 			}
 			i++;
 		}
 		else
 		{
-			ft_putchar(str[i]);
-			len++;
+			help = ft_putchar(str[i]);
+			if (help == -1)
+			{
+				va_end(args);
+				return (-1);
+			}
+			len += help;
 		}
 		i++;
 	}
 	va_end(args);
 	return (len);
 }
-
-

@@ -1,89 +1,46 @@
 #include "libftprintf.h"
 #include <stdio.h>
-#include <fcntl.h>
-
-// int	main(void)
-// {
-//     // printf("%%% | %%%% | n = %d | s = %s | %%%%% | c = %c\n", 42, "walid", 'c');
-//     // ft_printf("%%% | %%%% | || %%%%% |||%");
-//     printf("walid %");
-//     // printf("\nhex = %X || hex = %x\n", 42, 255);
-//     // ft_printf("hex = %X || hex = %x\n", 42, 255);
-// }
 
 
-// int	main(void)
-// {
-//     printf("| %% | n = %d | s = %s || c = %c\n", 42, "walid", 'c');
-//     ft_printf("| %% | n = %d | s = %s || c = %c\n", 42, "walid", 'c');
-//     printf("\nhex = %X || hex = %x\n", 42, 255);
-//     ft_printf("hex = %X || hex = %x\n", 42, 255);
-// }
+#include <stdio.h>
+#include <limits.h>
+#include "libftprintf.h"
 
-// int main(void)
-// {
-//     printf("%s |%| %c |%%| %u |%%%| %d |%%%%| %i\n", "walid", 'c', -220, -220, -220);
-//     ft_printf("%s |%| %c |%%| %u |%%%| %d |%%%%| %i\n", "walid", 'c', -220, -220, -220);
-//     // ft_putunsnbr(0);
-//     // ft_printf("\n");
-// }
+int	main(void)
+{
+	int	ret1;
+	int	ret2;
 
-// int main(void)
-// {
-//     char    c = 42;
-//     printf("%p\n", &c);
-//     ft_printf("%p\n", &c);
-//     return (0);
-// }
+	printf("===== INT_MIN =====\n");
+	ret1 = printf("%d\n", INT_MIN);
+	ret2 = ft_printf("%d\n", INT_MIN);
+	printf("Return: printf = %d | ft_printf = %d\n\n", ret1, ret2);
 
-// int main(void)
-// {
-//     pclose(stdout);
-//     int a = printf("%d", 1000);
-//     int b = ("%d", 1000);
-// }
+	printf("===== INT_MAX =====\n");
+	ret1 = printf("%d\n", INT_MAX);
+	ret2 = ft_printf("%d\n", INT_MAX);
+	printf("Return: printf = %d | ft_printf = %d\n\n", ret1, ret2);
 
+	printf("===== UINT_MAX =====\n");
+	ret1 = printf("%u\n", UINT_MAX);
+	ret2 = ft_printf("%u\n", UINT_MAX);
+	printf("Return: printf = %d | ft_printf = %d\n\n", ret1, ret2);
 
-// return value test:
+	printf("===== ZERO =====\n");
+	ret1 = printf("%d %u %x %X\n", 0, 0, 0, 0);
+	ret2 = ft_printf("%d %u %x %X\n", 0, 0, 0, 0);
+	printf("Return: printf = %d | ft_printf = %d\n\n", ret1, ret2);
 
-// int main(void)
-// {
-//     int y = printf("my name is = %s || %c\n", "walid", 'c');
-//     int x = ft_printf("my name is = %s || \n", "walid", 'c');
-//     printf("y = %d || x = %d\n", y, x);
-//     return (0);
-//}
+	printf("===== HEX =====\n");
+	ret1 = printf("%x %X\n", UINT_MAX, UINT_MAX);
+	ret2 = ft_printf("%x %X\n", UINT_MAX, UINT_MAX);
+	printf("Return: printf = %d | ft_printf = %d\n\n", ret1, ret2);
 
-// int main(void)
-// {
-//     int c = 42;
-//     int y = printf("hex = %x || %X\n", 0, 42);
-//     int x = ft_printf("hex = %x || %X\n", 0, 42);
-//     printf("y = %d || x = %d\n", y, x);
-//     return (0);
-// }
+	printf("===== POINTER =====\n");
+	int	n = 42;
+	ret1 = printf("%p %p\n", &n, NULL);
+	ret2 = ft_printf("%p %p\n", &n, NULL);
+	printf("Return: printf = %d | ft_printf = %d\n\n", ret1, ret2);
 
-// int main(void)
-// {
-//     int y = printf("d = %u\n", 123456);
-//     int x = ft_printf("d = %u\n", 123456);
-//     printf("y = %d || x = %d\n", y, x);
-//     return (0);
-// }
-
-// int main(void)
-// {
-//     int y = printf("d = %d\n", -21);
-//     int x = ft_printf("d = %d\n", -21);
-//     printf("y = %d || x = %d\n", y, x);
-//     return (0);
-// }
-
-// int main(void)
-// {
-//     int c = 42;
-//     int y = printf("%d %i %u %c %s %x %X %p\n", 11, -12, 123456789, 'c', (char *)NULL, 0, -42, NULL);
-//     int x = ft_printf("%d %i %u %c %s %x %X %p\n", 11, -12, 123456789, 'c', NULL, 0, -42, NULL);
-//     printf("y = %d || x = %d\n", y, x);
-//     return (0);
-// }
+	return (0);
+}

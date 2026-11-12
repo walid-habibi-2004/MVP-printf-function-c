@@ -3,6 +3,7 @@
 static int    ft_print_hex(unsigned int nb, char x)
 {
     int     len;
+    int     tmp;
 
     if (nb == 0)
         return (0);
@@ -10,13 +11,22 @@ static int    ft_print_hex(unsigned int nb, char x)
     len = 0;
     if (nb > 0)
     {
-        len += ft_print_hex(nb / 16, x);
+        tmp = ft_print_hex(nb / 16, x);
+        if (tmp == -1)
+            return (-1);
         if (x == 'x')
-            ft_putchar("0123456789abcdef"[nb % 16]);
+        {
+            if (ft_putchar("0123456789abcdef"[nb % 16]) == -1)
+                return (-1);
+            len++;
+        }
         else if (x == 'X')
-            ft_putchar("0123456789ABCDEF"[nb % 16]);
-        len++;
-        // nb /= 16;
+        {
+            if (ft_putchar("0123456789ABCDEF"[nb % 16]) == -1)
+                return (-1);
+            len++;
+        }
+        len += tmp;
     }
     return (len);
 }
@@ -24,13 +34,21 @@ static int    ft_print_hex(unsigned int nb, char x)
 int    ft_puthex(unsigned int nb, char x)
 {
     int     len;
+    int     tmp;
 
+    len = 0;
     if (nb == 0)
     {
-        ft_putchar('0');
+        if (ft_putchar('0') == -1)
+            return (-1);
         return (1);
     }
     else
-        len = ft_print_hex(nb, x);
+    {
+        tmp = ft_print_hex(nb, x);
+        if (tmp == -1)
+            return (-1);
+        len += tmp;
+    }
     return (len);
 }

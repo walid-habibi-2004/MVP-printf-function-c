@@ -6,7 +6,7 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:41:03 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/10 18:43:19 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/11 13:41:47 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,33 @@
 int	ft_putnbr(int nb)
 {
 	int		len;
+	int		tmp;
 	char	c;
 
 	len = 0;
 	if (nb == -2147483648)
 	{
-		write(1, "-2147483648", 11);
+		if (write(1, "-2147483648", 11) == -1)
+			return (-1);
 		return (11);
 	}
 	if (nb < 0)
 	{
-		ft_putchar('-');
+		if (ft_putchar('-') == -1)
+			return (-1);
 		nb = -nb;
 		len++;
 	}
 	if (nb > 9)
-		len += ft_putnbr(nb / 10);
+	{
+		tmp = ft_putnbr(nb / 10);
+		if (tmp == -1)
+			return (-1);
+		len += tmp;
+	}
 	c = (nb % 10) + '0';
-	len += ft_putchar(c);
+	if (ft_putchar(c) == -1)
+		return (-1);
+	len ++;
 	return (len);
 }
