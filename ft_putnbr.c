@@ -6,25 +6,27 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:41:03 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/11 13:41:47 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/12 14:20:10 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+static	int	ft_putmin(void)
+{
+	if (write(1, "-2147483648", 11) == -1)
+		return (-1);
+	return (11);
+}
+
 int	ft_putnbr(int nb)
 {
 	int		len;
 	int		tmp;
-	char	c;
 
 	len = 0;
 	if (nb == -2147483648)
-	{
-		if (write(1, "-2147483648", 11) == -1)
-			return (-1);
-		return (11);
-	}
+		return (ft_putmin());
 	if (nb < 0)
 	{
 		if (ft_putchar('-') == -1)
@@ -39,8 +41,7 @@ int	ft_putnbr(int nb)
 			return (-1);
 		len += tmp;
 	}
-	c = (nb % 10) + '0';
-	if (ft_putchar(c) == -1)
+	if (ft_putchar((nb % 10) + '0') == -1)
 		return (-1);
 	len ++;
 	return (len);
