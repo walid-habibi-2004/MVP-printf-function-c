@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putunsnbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahabibi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 18:23:59 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/11 18:24:07 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/12 15:58:15 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putunsnbr(unsigned int nb)
 {

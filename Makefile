@@ -14,7 +14,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-%.o:%.c libftprintf.h
+%.o:%.c ft_printf.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
@@ -25,4 +25,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean
+.PHONY: all clean fclean re

@@ -1,10 +1,9 @@
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 
 #include <stdio.h>
 #include <limits.h>
-#include "libftprintf.h"
 
 int	main(void)
 {

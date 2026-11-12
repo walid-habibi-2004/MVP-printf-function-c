@@ -6,11 +6,11 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:53:43 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/11 13:20:07 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/12 15:58:01 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {

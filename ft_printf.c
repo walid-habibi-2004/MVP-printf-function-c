@@ -6,11 +6,11 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:46:49 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/12 15:41:39 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/12 15:57:51 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static	int	ft_check_format(char format, va_list args)
 {

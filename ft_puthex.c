@@ -6,11 +6,11 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 14:31:49 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/12 14:48:40 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/12 15:58:04 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static	int	ft_get_hex(unsigned int nb, char x)
 {
