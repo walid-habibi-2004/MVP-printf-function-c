@@ -6,7 +6,7 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:46:49 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/12 15:57:51 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:12:24 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static	int	ft_process_char(const char *str, int i, va_list args)
 {
 	int	help;
 
+	if (!str)
+		return (-1);
 	if (str[i] == '%')
 	{
 		if (str[i + 1] == '\0')
