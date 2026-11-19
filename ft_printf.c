@@ -6,7 +6,7 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 16:46:49 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/13 12:12:24 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/19 20:14:43 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ static	int	ft_check_format(char format, va_list args)
 	else if (format == 'X')
 		return (ft_puthex(va_arg(args, unsigned int), 'X'));
 	else if (format == '%')
-		return (ft_putchar('%'));
+		return (ft_putchar(format));
+	else
+		return (ft_putchar(format));
 	return (-1);
 }
 
@@ -37,8 +39,6 @@ static	int	ft_process_char(const char *str, int i, va_list args)
 {
 	int	help;
 
-	if (!str)
-		return (-1);
 	if (str[i] == '%')
 	{
 		if (str[i + 1] == '\0')
@@ -56,14 +56,12 @@ static	int	ft_process_char(const char *str, int i, va_list args)
 	return (help);
 }
 
-int	ft_printf(const char *str, ...)
+static int	ft_printf_loop(const char *str, va_list args)
 {
-	va_list	args;
-	int		len;
-	int		help;
-	int		i;
+	int	i;
+	int	help;
+	int	len;
 
-	va_start(args, str);
 	i = 0;
 	len = 0;
 	while (str[i])
@@ -72,14 +70,29 @@ int	ft_printf(const char *str, ...)
 		if (help == -2)
 			break ;
 		else if (help == -1)
-		{
-			va_end(args);
 			return (-1);
-		}
 		if (str[i] == '%')
 			i++;
 		len += help;
 		i++;
+	}
+	return (len);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list	args;
+	int		len;
+
+	if (!str)
+		return (-1);
+	va_start(args, str);
+	len = 0;
+	len = ft_printf_loop(str, args);
+	if (len == -1)
+	{
+		va_end(args);
+		return (-1);
 	}
 	va_end(args);
 	return (len);
