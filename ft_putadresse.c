@@ -6,12 +6,11 @@
 /*   By: wahabibi <wahabibi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 18:25:03 by wahabibi          #+#    #+#             */
-/*   Updated: 2026/11/12 15:57:57 by wahabibi         ###   ########.fr       */
+/*   Updated: 2026/11/20 17:44:20 by wahabibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static	int	ft_check_addr(void)
 {
